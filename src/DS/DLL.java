@@ -219,16 +219,45 @@ public class DLL<T> {
     }
 
     public void removeFront() {
+        if (this.head == null) {
+            int currentLine = new Throwable().getStackTrace()[0].getLineNumber();
+            String warning = "List is empty ";
+            globals.LogWarning(1, currentLine, fileName, warning);
+            return;
+        }
 
-
+        ListNode<T> cur = this.head;
+        ListNode<T> next = cur.getNext();
+        next.setPrev(null);
+        this.head = next;
+        cur = null;
+        return;
     }
 
     public void removeLast() {
+        if (this.head == null) {
+            int currentLine = new Throwable().getStackTrace()[0].getLineNumber();
+            String warning = "List is empty ";
+            globals.LogWarning(1, currentLine, fileName, warning);
+            return;
+        }
 
-        
+        ListNode<T> prev = this.head;
+        ListNode<T> nodeItr = this.head;
+
+        while (nodeItr.getNext() != null) {
+            prev = nodeItr;
+            nodeItr = nodeItr.getNext();
+        }
+
+        prev.setNext(null);
+        nodeItr.setPrev(null);
+        nodeItr = null;
     }
 
     public void remove(T data) {
+        ListNode<T> cur = null;
+
 
     }
     /* add Api for removeAfter, removeBefore, removeAllAfter, removeAllBefore */
