@@ -10,7 +10,7 @@ public class SortingTest {
 
         System.out.println("******* QSort Testing **********");
         IntegerFileGenerator gen = new IntegerFileGenerator(100, 10000);
-        gen.write();
+        gen.generate();
         Vector<Integer> arr = gen.read();
         System.out.println("-------------Input Data------------");
         for (int i = 0; i < arr.size(); i++) {
@@ -19,7 +19,11 @@ public class SortingTest {
         System.out.println();
         System.out.println();
         Qsort qsort = new Qsort(arr, arr.size());
+        long start = System.nanoTime();
         Vector <Integer> sort = qsort.run();
+        long end = System.nanoTime();
+        long duration = end - start;
+        System.out.println("Time taken to sort in ns:"+  duration);
         System.out.println("-------------Output Data-------------");
         for (int i = 0; i < sort.size(); i++) {
             System.out.print(sort.get(i) + " ");

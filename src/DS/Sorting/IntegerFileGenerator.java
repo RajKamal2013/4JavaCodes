@@ -50,7 +50,7 @@ public class IntegerFileGenerator {
         OutputFileName = "Output.txt";
     }
 
-    public void write() {
+    public void generate() {
         int data;
         Random rand = new Random();
         try {
