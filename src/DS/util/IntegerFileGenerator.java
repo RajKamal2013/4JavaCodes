@@ -1,4 +1,4 @@
-package DS.Sorting;
+package DS.util;
 
 import java.io.File;
 import java.io.FileReader;

@@ -1,6 +1,5 @@
-package DS.Sorting;
+package DS.util;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 public class FileTest {

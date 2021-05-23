@@ -1,35 +1,57 @@
 package DS.Sorting;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import DS.util.IntegerFileGenerator;
+
+import javax.sound.midi.Soundbank;
+import java.sql.SQLOutput;
 import java.util.Vector;
 
 public class SortingTest {
-    public static void main(String[] args) {
 
-        System.out.println("******* QSort Testing **********");
-        IntegerFileGenerator gen = new IntegerFileGenerator(100, 10000);
-        gen.generate();
-        Vector<Integer> arr = gen.read();
-        System.out.println("-------------Input Data------------");
+    public static void PrintArrayWithBanner(Vector<Integer> arr, String str) {
+        String banner = "---------------";
+        System.out.println(banner + str + banner);
         for (int i = 0; i < arr.size(); i++) {
             System.out.print(arr.get(i) + " ");
         }
+        System.out.print(banner + banner);
         System.out.println();
-        System.out.println();
-        Qsort qsort = new Qsort(arr, arr.size());
-        long start = System.nanoTime();
-        Vector <Integer> sort = qsort.run();
-        long end = System.nanoTime();
-        long duration = end - start;
+    }
+
+    public static void main(String[] args) {
+        long start, end, duration;
+
+
+        System.out.println("******************QSort Testing **********");
+        IntegerFileGenerator Qgen = new IntegerFileGenerator(100, 10000);
+        Qgen.generate();
+        Vector<Integer> Qarr = Qgen.read();
+        PrintArrayWithBanner(Qarr, "Input Data");
+
+        start = System.nanoTime();
+        Qsort.Sort(Qarr);
+        end = System.nanoTime();
+
+        duration = end - start;
         System.out.println("Time taken to sort in ns:"+  duration);
-        System.out.println("-------------Output Data-------------");
-        for (int i = 0; i < sort.size(); i++) {
-            System.out.print(sort.get(i) + " ");
-        }
-        System.out.println();
-        System.out.println();
+        PrintArrayWithBanner(Qarr, "Output Data");
+
+
+        System.out.println("*******************Msort Testing ******************");
+        IntegerFileGenerator Mgen = new IntegerFileGenerator(100, 10000);
+        Mgen.generate();
+        Vector<Integer> Marr = Mgen.read();
+        PrintArrayWithBanner(Marr, "Input Data");
+
+        start = System.nanoTime();
+        MSort.Sort(Marr);
+        end = System.nanoTime();
+
+        duration = end - start;
+        System.out.println("Time taken to sort in ns:"+  duration);
+        PrintArrayWithBanner(Marr, "Output Data");
+
+
         /*
         try {
             FileWriter sortedFile = new FileWriter(new File("Sorted.txt"));
