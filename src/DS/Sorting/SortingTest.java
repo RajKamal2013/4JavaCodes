@@ -1,9 +1,12 @@
 package DS.Sorting;
 
 import DS.util.IntegerFileGenerator;
+import DS.Sorting.Qsort;
 
 import javax.sound.midi.Soundbank;
+import java.sql.Array;
 import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.Vector;
 
 public class SortingTest {
@@ -18,12 +21,26 @@ public class SortingTest {
         System.out.println();
     }
 
+    public static void PrintArrayWithBanner(Integer[] arr, String str) {
+        String banner = "---------------";
+        System.out.println(banner + str + banner);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.print(banner + banner);
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         long start, end, duration;
+        int range = 100;
+        int size = 100;
 
 
         System.out.println("******************QSort Testing **********");
-        IntegerFileGenerator Qgen = new IntegerFileGenerator(10000, 10000, "QsortInput.txt", "QsortOutput.txt");
+        size = 1000;
+        range = 1000;
+        IntegerFileGenerator Qgen = new IntegerFileGenerator(size, range , "QsortInput.txt", "QsortOutput.txt");
         Qgen.generate();
         Vector<Integer> Qarr = Qgen.read();
         PrintArrayWithBanner(Qarr, "Input Data");
@@ -38,7 +55,9 @@ public class SortingTest {
 
 
         System.out.println("*******************Msort Testing ******************");
-        IntegerFileGenerator Mgen = new IntegerFileGenerator(10000, 10000, "MSortInput.txt", "MsortOutput.txt");
+        size = 1000;
+        range = 1000;
+        IntegerFileGenerator Mgen = new IntegerFileGenerator(size, range, "MSortInput.txt", "MsortOutput.txt");
         Mgen.generate();
         Vector<Integer> Marr = Mgen.read();
         PrintArrayWithBanner(Marr, "Input Data");
@@ -52,7 +71,9 @@ public class SortingTest {
         PrintArrayWithBanner(Marr, "Output Data");
 
         System.out.println("*******************Hsort Testing ******************");
-        IntegerFileGenerator Hgen = new IntegerFileGenerator(10000, 10000, "HSortInput.txt", "HsortOutput.txt");
+        size = 1000;
+        range = 1000;
+        IntegerFileGenerator Hgen = new IntegerFileGenerator(size, range, "HSortInput.txt", "HsortOutput.txt");
         Hgen.generate();
         Vector<Integer> Harr = Hgen.read();
         PrintArrayWithBanner(Harr, "Input Data");
@@ -64,6 +85,25 @@ public class SortingTest {
         System.out.println("Time Taken to Sort in ns:" + duration);
         PrintArrayWithBanner(Harr, "Output Data");
 
+        System.out.println("*******************Csort Testing ******************");
+        range = 10000;
+        size = 700;
+        IntegerFileGenerator Cgen = new IntegerFileGenerator(size, range, "CSortInput.txt", "CsortOutput.txt");
+        Cgen.generate();
+        Vector<Integer> Cvec = Cgen.read();
+        Object[] Oarr = Cvec.toArray();
+        Integer[] Carr = Arrays.copyOf(Oarr, Oarr.length, Integer[].class);
+
+        if (Carr != null) {
+            PrintArrayWithBanner((Integer[]) Carr, "Input Data");
+
+            start = System.nanoTime();
+            CSort.Sort((Integer[]) Carr, range);
+            end = System.nanoTime();
+            duration = end - start;
+            System.out.println("Time Taken to Sort in ns:" + duration);
+            PrintArrayWithBanner((Integer[]) Carr, "Output Data");
+        }
 
         /*
         try {

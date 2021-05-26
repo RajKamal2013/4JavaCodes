@@ -2,8 +2,7 @@ package DS.Sorting;
 
 import java.util.Vector;
 
-public class Qsort
-{
+public class Qsort {
     static void swap(Vector<Integer> arr, int x, int y) {
         int temp = arr.get(x);
         arr.set(x, arr.get(y));
@@ -27,7 +26,7 @@ public class Qsort
             return j;
     }
 
-     static void Sort(Vector<Integer> arr) {
+     public static void Sort(Vector<Integer> arr) {
         if (arr.size() <= 1) {
             return;
         }
