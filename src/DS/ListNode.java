@@ -1,7 +1,5 @@
 package DS;
 
-import java.util.List;
-
 public class ListNode<T> {
     private T data;
     private ListNode next;
