@@ -1,11 +1,7 @@
 package DS.Sorting;
 
 import DS.util.IntegerFileGenerator;
-import DS.Sorting.Qsort;
 
-import javax.sound.midi.Soundbank;
-import java.sql.Array;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Vector;
 
@@ -57,7 +53,7 @@ public class SortingTest {
         System.out.println("*******************Msort Testing ******************");
         size = 1000;
         range = 1000;
-        IntegerFileGenerator Mgen = new IntegerFileGenerator(size, range, "MSortInput.txt", "MsortOutput.txt");
+        IntegerFileGenerator  Mgen = new IntegerFileGenerator(size, range, "MSortInput.txt", "MsortOutput.txt");
         Mgen.generate();
         Vector<Integer> Marr = Mgen.read();
         PrintArrayWithBanner(Marr, "Input Data");
